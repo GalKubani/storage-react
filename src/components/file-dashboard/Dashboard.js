@@ -1,15 +1,14 @@
 import React , { useContext} from 'react'
 import { LoginContext } from '../../context/LoginContext';
-import Dashboard from '../file-dashboard/Dashboard';
 
 
-const Home=()=>{
+const Dashboard=()=>{
     
     const { userData,loginDispatch } = useContext(LoginContext);
     return(
-    <div className="home">
-        {!userData.data?.token?<p>Please login or subscribe</p> : <Dashboard /> }
+    <div className="dashboard">
+       <p>Welcome {userData.data.user.name}</p> 
     </div>
 )}
 
-export default Home
+export default Dashboard

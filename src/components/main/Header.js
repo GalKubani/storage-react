@@ -6,6 +6,7 @@ import { deleteUserFromCookie } from '../../cookies/cookies';
 
 const Header=()=>{
     const {userData,loginDispatch}=useContext(LoginContext)
+    console.log(userData)
     return (    
         <div className="header">
             <div className="header__nav">

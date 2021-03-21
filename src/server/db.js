@@ -4,9 +4,13 @@ import Axios from 'axios'
 // const DB_URL=`https://udemy-expense-default-rtdb.firebaseio.com/`
 // const DB_URL='http://imagesserver-env.eba-uemuextf.eu-west-1.elasticbeanstalk.com/'
 const DB_URL=`http://localhost:2020`
-export const getFilesFromDB = async () => {
+export const getFilesFromDB = async (token) => {
     try {
-        const res = await Axios.get(DB_URL+"/get-files");
+        const res = await Axios.get(DB_URL+"/get-files",{
+            headers: {
+                'Authorization': 'Bearer ' + token
+              }
+        });
         const files = [];
         for (let id in res.data) {
             files.push({
@@ -34,12 +38,12 @@ export const loginToDB=async(email,password)=>{
         console.log(err);
     }
 }
-
-export const postFileInDB = async (formData) => {
+export const postFileInDB = async (formData,token) => {
     try {
         const res = await Axios.post(DB_URL+'/upload-file', formData,{
             headers:{
-                "Content-Type": 'multipart/form-data'
+                "Content-Type": 'multipart/form-data',
+                'Authorization': 'Bearer ' + token
             }
         });
         return res.data
@@ -48,9 +52,13 @@ export const postFileInDB = async (formData) => {
     }
 }; 
 
-export const removeFileFromDB = async (id,key) => {
+export const removeFileFromDB = async (id,key,token) => {
     try {
-        await Axios.delete(DB_URL + `/delete-file?key=${key}&id=${id}`);
+        await Axios.delete(DB_URL + `/delete-file?key=${key}&id=${id}`,{
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
         return;
     } catch (err) {
         console.log(err);

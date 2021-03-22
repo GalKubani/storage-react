@@ -5,7 +5,7 @@ import { removeFileFromDB } from '../../server/db';
 import {removeFileAction} from '../../actions/fileActions';
 
 const File=({file})=>{
-    const URL=`https://storage-bucket-kuba.s3-eu-west-1.amazonaws.com/get-file/`
+    const URL=`http://http://storageserver-env.eba-9pfxkuy8.eu-central-1.elasticbeanstalk.com/get-file/`
     const {userData}=useContext(LoginContext)
     const {fileDispatch}= useContext(FileContext);
     const RemoveFile=(e)=>{

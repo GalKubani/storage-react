@@ -10,6 +10,7 @@ export const FileContext= createContext();
 const FileContextProvider=(props)=>{
     const [fileState,fileDispatch]=useReducer(FilesReducer,initialFileState)
     const history= useHistory()
+    console.log(fileState)
     const {userData}=useContext(LoginContext)
     useEffect(()=>{
         let isComponentExist=true;

@@ -1,11 +1,17 @@
-import React from 'react'
+import React ,{useContext} from 'react'
+import { FileContext } from '../../context/FileContext';
+import File from './File'
 
 const Files=()=>{
     
+    const{fileState}=useContext(FileContext)
     return(
-    <div className="files">
-        <div>will draw all existing files for this user here and display via map</div>
-    </div>
-)}
-
+        <div>
+            { fileState.files.map((file)=>(
+                <File key={file.key} file={ file } />
+            ))
+            }
+        </div>
+    )}
+    
 export default Files

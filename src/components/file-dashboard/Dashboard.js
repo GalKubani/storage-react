@@ -9,9 +9,10 @@ const Dashboard=()=>{
     const { userData,loginDispatch } = useContext(LoginContext);
     return(
     <div className="dashboard">
-       <p>Welcome {userData.data.user.name}</p> 
-       <Files />
+       <p>Hello {userData.data.user.name}</p> 
        <AddFile />
+       <Files />
+       
     </div>
 )}
 

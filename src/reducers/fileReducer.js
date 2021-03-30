@@ -13,7 +13,7 @@ const FilesReducer=(filesState, action)=>{
         case "REMOVE_FILE":
             return{
                 files: filesState.files.filter((File)=>{
-                    return File._id !== action.File.id
+                    return File._id !== action.file.id
                 })
             }
         default:

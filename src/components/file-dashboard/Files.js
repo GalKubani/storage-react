@@ -7,10 +7,14 @@ const Files=()=>{
     const{fileState}=useContext(FileContext)
     return(
         <div>
-            { fileState.files.map((file)=>(
+            <div className="files-container">
+
+            
+            { fileState.files.length>0 &&  fileState.files.map((file)=>(
                 <File key={file.key} file={ file } />
             ))
             }
+            </div>
         </div>
     )}
     

@@ -3,7 +3,7 @@ import Axios from 'axios'
 // // const DB_URL=`http://ec2-18-203-251-138.eu-west-1.compute.amazonaws.com`
 // const DB_URL=`https://udemy-expense-default-rtdb.firebaseio.com/`
 // const DB_URL='http://imagesserver-env.eba-uemuextf.eu-west-1.elasticbeanstalk.com/'
-const DB_URL=`http://storageserver-env.eba-9pfxkuy8.eu-central-1.elasticbeanstalk.com/`
+const DB_URL=`http://localhost:2020`
 export const getFilesFromDB = async (token) => {
     try {
         const res = await Axios.get(DB_URL+"/get-files",{
@@ -18,6 +18,19 @@ export const getFilesFromDB = async (token) => {
             });
         }
         return files;
+    } catch (err) {
+        console.log("no files");
+    }
+};
+export const getFileFromDB = async (token,key) => {
+    try {
+        const res = await Axios.get(DB_URL+`/get-file?key=${key}`,{
+            headers: {
+                'Authorization': 'Bearer ' + token
+              }
+        });
+        res.download(__dirname)
+        return res.data;
     } catch (err) {
         console.log("no files");
     }
@@ -40,6 +53,7 @@ export const loginToDB=async(email,password)=>{
 }
 export const postFileInDB = async (formData,token) => {
     try {
+        console.log(token)
         const res = await Axios.post(DB_URL+'/upload-file', formData,{
             headers:{
                 "Content-Type": 'multipart/form-data',

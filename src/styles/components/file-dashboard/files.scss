@@ -1,14 +1,33 @@
 .files-container{
     display: flex;
-    width: 60vw;
+    width: 80vw;
     height: 60vh;
     justify-content: space-between;
     align-items: center;
+    button{
+        max-height: 48px;
+        margin: 2px;
+    }
+}
+.file-container{
+    display: flex;
+    width: 220px;
+    height: 100px;
 }
 .message-input{
     text-align: center;
 }
+.file-title{
+    max-width: 200px;
+    text-align: center;
+    word-wrap: break-word;
+}
 .file{
-    width: 200px;
-    height: 200px;
+    width: 50px;
+    height: 50px;
+}
+.logo-button{
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
 }

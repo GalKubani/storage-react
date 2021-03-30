@@ -48,7 +48,7 @@ export const loginToDB=async(email,password)=>{
         const res= await Axios.post(DB_URL+"/users/login",{email,password})
         return res;
     }catch (err) {
-        console.log(err);
+        throw new Error(err);
     }
 }
 export const postFileInDB = async (formData,token) => {

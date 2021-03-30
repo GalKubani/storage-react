@@ -5,9 +5,9 @@
 //         id:"5"
 //     }
 // })
-export const loginUser=({user,token})=>({
+export const loginUser=(userData,token)=>({
     type:"LOGIN_USER",
-    user,
+    userData,
     token
 })
 export const logoutUser=()=>({

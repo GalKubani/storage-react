@@ -6,7 +6,8 @@ import Dashboard from '../file-dashboard/Dashboard';
 
 const Home=()=>{
     
-    const { userData,loginDispatch } = useContext(LoginContext);
+    const { userData } = useContext(LoginContext);
+    console.log(userData)
     return(
     <div className="home">
         {!userData.data?.token?<p>Please login or subscribe</p> : 

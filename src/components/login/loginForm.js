@@ -32,27 +32,28 @@ const LoginForm = (props) => {
         if(passwordValue==="") {setIsPasswordValid(false)}
         else {setIsPasswordValid(true)}
     }
-    const onSubmitForm=(event)=>{
+    const onSubmitForm=async (event)=>{
         event.preventDefault()
         console.log("login form!",email,password)
-        // loginDispatch(loginUser())
-        // history.push("/rooms")
-        loginToDB(email,password).then(
-            (userData)=>{
-                loginDispatch(loginUser(userData))
-                saveUserOnCookie(userData)
-                history.push("/")
-            },(err)=>{
-                if(err.message ==="EMAIL_NOT_FOUND"){
-                    setIsEmailValid(false)
-                    setErrorMessage("Email not found")
-                }
-                else if(err.message==="INVALID_PASSWORD"){
-                    setIsPasswordValid(false)
-                    setErrorMessage("Invalid password")
-                }
+        try{
+            await loginToDB(email,password).then(
+                (userData)=>{
+                    if(userData){ 
+                        saveUserOnCookie(userData)
+                        loginDispatch(loginUser(userData,userData.data.token))
+                        history.push("/")
+                    }
+                })
+        }catch(err){
+            if(err.message ==="Error: Request failed with status code 404"){
+                setIsEmailValid(false)
+                setErrorMessage("Email not found")
             }
-        )
+            else if(err.message==="Error: Request failed with status code 400"){
+                setIsPasswordValid(false)
+                setErrorMessage("Invalid password")
+            }
+        }
     }
     const isFormInvalid=()=>{
         return email===""||password==="";

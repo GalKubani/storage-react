@@ -10,7 +10,7 @@ import deleteLogo from '../../images/delete.png'
 
 
 const File=({file})=>{
-    const URL=`http://localhost:2020/get-file/`
+    const URL=`http://Storageserverkuba-env.eba-mwm2p54v.eu-central-1.elasticbeanstalk.com/get-file/`
     const {userData}=useContext(LoginContext)
     const {fileDispatch}= useContext(FileContext);
     let fileType=""
